@@ -9,10 +9,16 @@ get '/' do
   erb :home
   end
 
-post '/addition' do
-  redirect to "/#{params[:number1]}"
+get '/add' do
+  erb :add
 end
 
-get  '/:num' do
-  "#{Addition.add_1 params[:num].to_i}"
+post '/addition' do
+  redirect to "/#{params[:number1]}/#{params[:number2]}"
+  binding.pry
+end
+
+get  '/:num1/:num2' do
+  "#{Addition.add( params[:num1].to_i, params[:num2].to_i)}"
+  erb :home
 end
